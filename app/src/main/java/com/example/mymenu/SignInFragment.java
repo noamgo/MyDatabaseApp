@@ -1,5 +1,6 @@
 package com.example.mymenu;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ public class SignInFragment extends Fragment {
     DatabaseHelper myDb;
     EditText etMail, etId;
     Button btnSignIn;
+    Intent intent;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +38,10 @@ public class SignInFragment extends Fragment {
             public void onClick(View v) {
                     myDb = new DatabaseHelper(getContext());
                     if (myDb.dataExists(myDb.getWritableDatabase(), etId.getText().toString(), etMail.getText().toString())) {
+                        intent = new Intent(getContext(), SignedInActivity.class);
+                        intent.putExtra("id", etId.getText().toString());
+                        startActivity(intent);
+
                         Toast.makeText(getContext(), "Sign in successful", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getContext(), "Sign in failed", Toast.LENGTH_SHORT).show();

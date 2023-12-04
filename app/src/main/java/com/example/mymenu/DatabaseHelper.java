@@ -81,6 +81,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    public String getFullNameById(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT " + COL_NAME + ", " + COL_SURNAME + " FROM " + TABLE_NAME + " WHERE " + COL_ID + " = ?", new String[]{id});
+        String fullName = "";
+        if (cursor.moveToFirst()) {
+            fullName = cursor.getString(0) + " " + cursor.getString(1);
+        }
+        return fullName;
+    }
+
     // Helper method to check if data with a given ID exists
     private boolean dataExists(SQLiteDatabase db, String id) {
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_ID + " = ?", new String[]{id});

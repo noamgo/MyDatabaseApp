@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MyMenu"
         tools:targetApi="31">
         <activity
+            android:name=".SignedInActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainFragmentHub"
             android:exported="false" />
         <activity
@@ -29,13 +32,6 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
