@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.fragment.app.Fragment;
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.regex.Pattern;
 
 
 public class RegisterFragment extends Fragment {
@@ -79,14 +82,36 @@ public class RegisterFragment extends Fragment {
     }
 
     private void insertData() {
-        boolean isInserted = myDb.insertData(
-                etId.getText().toString(),
-                name.getText().toString(),
-                surename.getText().toString(),
-                email.getText().toString(),
-                etPhone.getText().toString());
+        if (checkFields()) {
+            boolean isInserted = myDb.insertData(
+                    etId.getText().toString(),
+                    name.getText().toString(),
+                    surename.getText().toString(),
+                    email.getText().toString(),
+                    etPhone.getText().toString());
 
-        showResultToast(isInserted, "Data Inserted");
+            showResultToast(isInserted, "Data Inserted");
+        }
+    }
+
+    private boolean checkFields() {
+        if (etId.length() == 0 || !etId.getText().toString().matches("[0-9]+")) {
+            Toast.makeText(requireContext(), "Please fix ID", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (name.length() == 0) {
+            Toast.makeText(requireContext(), "Please fix name", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (surename.length() == 0) {
+            Toast.makeText(requireContext(), "Please fix surename", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (email.length() == 0 || !Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
+            Toast.makeText(requireContext(), "Please fix email", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (etPhone.length() != 10 || !etPhone.getText().toString().matches("[0-9]+")) {
+            Toast.makeText(requireContext(), "Please fix phone number", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     private void updateData() {
