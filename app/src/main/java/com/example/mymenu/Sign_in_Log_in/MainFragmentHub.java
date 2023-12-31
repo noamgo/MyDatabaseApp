@@ -1,4 +1,4 @@
-package com.example.mymenu;
+package com.example.mymenu.Sign_in_Log_in;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.mymenu.AboutMeActivity;
+import com.example.mymenu.MainActivity;
+import com.example.mymenu.MyViewPagerAdapter;
+import com.example.mymenu.R;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 

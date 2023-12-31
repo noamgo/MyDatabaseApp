@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    android:padding="16dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+
+        <Button
+            android:id="@+id/btnConnectToOthers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="connect to other devices"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Via NFC Button -->
+        <Button
+            android:id="@+id/btnAllowConnection"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Let others connect"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- Send File Button -->
+    <Button
+        android:id="@+id/btnSendText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send File"
+        android:layout_marginTop="16dp"
+        android:enabled="true" />
+
+    <!-- Cancel Button -->
+    <Button
+        android:id="@+id/btnEnableSending"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="let people send you"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/tvReciveText"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:textSize="20dp"
+        android:text="recived text:" />
+
+    <EditText
+        android:id="@+id/etSend"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:textSize="20dp"
+        android:hint="data to send" />
+
+</LinearLayout>

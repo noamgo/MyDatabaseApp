@@ -1,4 +1,4 @@
-package com.example.mymenu;
+package com.example.mymenu.Sign_in_Log_in;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,13 +14,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mymenu.AboutMeActivity;
+import com.example.mymenu.DataSendActivity;
+import com.example.mymenu.DatabaseHelper;
+import com.example.mymenu.R;
+
 public class SignedInActivity extends AppCompatActivity {
 
     Intent intent;
     DatabaseHelper myDb;
     String idIntent;
     TextView tvWelcome;
-    Button btnLogout;
+    Button btnLogout, btnBluetooth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,15 @@ public class SignedInActivity extends AppCompatActivity {
                 startActivity(intent);
 
                 Toast.makeText(SignedInActivity.this, "You clicked Logout", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnBluetooth = findViewById(R.id.btnBluetooth);
+        btnBluetooth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(SignedInActivity.this, DataSendActivity.class);
+                startActivity(intent);
             }
         });
     }

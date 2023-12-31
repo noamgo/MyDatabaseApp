@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignedInActivity"
+    tools:context=".Sign_in_Log_in.SignedInActivity"
     android:background="@drawable/background">
 
 
@@ -26,14 +26,22 @@
             android:id="@+id/tvWelcome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="50dp"
+            android:textSize="40dp"
             android:layout_margin="50dp"/>
+
+        <Button
+            android:id="@+id/btnBluetooth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send text with bluetooth"
+            android:layout_margin="20dp"/>
 
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Logout" />
+            android:text="Logout"
+            android:layout_margin="20dp"/>
 
 
     </LinearLayout>

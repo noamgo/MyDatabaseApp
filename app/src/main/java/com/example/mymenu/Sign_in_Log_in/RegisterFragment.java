@@ -1,4 +1,4 @@
-package com.example.mymenu;
+package com.example.mymenu.Sign_in_Log_in;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -18,6 +18,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.mymenu.DatabaseHelper;
+import com.example.mymenu.R;
+import com.example.mymenu.ShowDataActivity;
 
 import java.util.regex.Pattern;
 
