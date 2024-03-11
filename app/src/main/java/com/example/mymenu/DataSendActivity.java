@@ -26,12 +26,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.core.app.ActivityCompat;
 
-import com.example.mymenu.Sign_in_Log_in.MainFragmentHub;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
+
+import Tetris.Tetris;
 
 public class DataSendActivity extends AppCompatActivity {
 
@@ -419,15 +419,14 @@ public class DataSendActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.Home){
-            intent = new Intent(this, MainActivity.class);
+            intent = new Intent(this, Tetris.class);
             startActivity(intent);
 
             Toast.makeText(this, "You clicked Home", Toast.LENGTH_SHORT).show();
         }
 
         if (id == R.id.Search) {
-            intent = new Intent(this, MainFragmentHub.class);
-            startActivity(intent);
+
 
             Toast.makeText(this, "You clicked Sign in/out", Toast.LENGTH_SHORT).show();
         }

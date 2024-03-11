@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,27 +17,1041 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="About me page"
+            android:text="Tetris page"
             android:layout_gravity="center"
             android:textSize="35dp"/>
 
-        <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="300dp"
-            android:layout_margin="30dp"
+        <GridLayout
+            android:layout_width="290dp"
+            android:layout_height="580dp"
             android:layout_gravity="center"
-            android:background="@color/cardview_shadow_start_color">
+            android:columnCount="10"
+            android:rowCount="20"
+            android:id="@+id/gridLayout">
 
-        <TextView
-            android:id="@+id/tvWelcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:padding="30dp"/>
+            <!-- Row 0 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r0"
+                android:src="@drawable/tetris_background" />
 
-        </ScrollView>
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r0"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r0"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r0"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r0"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r0"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r0"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r0"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r0"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r0"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 1 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r1"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r1"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r1"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r1"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r1"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r1"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r1"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r1"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r1"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r1"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 2 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r2"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r2"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r2"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r2"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r2"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r2"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r2"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r2"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r2"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r2"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 3 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r3"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r3"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r3"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r3"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r3"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r3"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r3"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r3"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r3"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r3"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 4 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r4"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r4"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r4"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r4"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r4"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r4"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r4"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r4"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r4"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r4"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 5 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r5"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r5"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r5"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r5"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r5"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r5"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r5"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r5"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r5"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r5"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 6 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r6"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r6"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r6"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r6"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r6"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r6"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r6"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r6"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r6"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r6"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 7 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r7"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r7"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r7"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r7"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r7"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r7"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r7"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r7"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r7"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r7"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 8 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r8"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r8"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r8"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r8"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r8"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r8"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r8"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r8"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r8"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r8"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 9 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r9"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r9"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r9"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r9"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r9"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r9"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r9"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r9"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r9"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r9"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 10 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r10"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r10"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r10"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r10"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r10"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r10"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r10"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r10"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r10"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r10"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 11 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r11"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r11"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r11"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r11"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r11"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r11"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r11"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r11"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r11"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r11"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 12 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r12"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r12"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r12"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r12"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r12"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r12"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r12"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r12"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r12"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r12"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 13 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r13"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r13"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r13"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r13"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r13"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r13"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r13"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r13"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r13"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r13"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 14 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r14"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r14"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r14"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r14"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r14"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r14"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r14"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r14"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r14"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r14"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 15 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r15"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r15"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r15"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r15"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r15"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r15"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r15"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r15"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r15"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r15"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 16 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r16"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r16"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r16"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r16"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r16"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r16"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r16"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r16"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r16"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r16"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 17 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r17"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r17"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r17"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r17"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r17"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r17"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r17"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r17"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r17"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r17"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 18 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r18"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r18"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r18"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r18"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r18"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r18"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r18"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r18"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r18"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r18"
+                android:src="@drawable/tetris_background" />
+
+            <!-- Row 19 -->
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c0r19"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c1r19"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c2r19"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c3r19"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c4r19"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c5r19"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c6r19"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c7r19"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c8r19"
+                android:src="@drawable/tetris_background" />
+
+            <ImageView
+                style="@style/ImageViewStyle"
+                android:id="@+id/c9r19"
+                android:src="@drawable/tetris_background" />
+        </GridLayout>
 
         <Button
+            android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
