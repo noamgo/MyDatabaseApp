@@ -35,6 +35,10 @@
             Button back;
             int colorIdCount;
 
+            // store the location of current shape
+            int currentShapeRow = 0;
+            int currentShapeCol = 0;
+
             @Override
             protected void onCreate(@Nullable Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
@@ -54,12 +58,17 @@
                 // Initialize the game board
                 initializeGameBoard();
 
+                createShape(numRows, numCols);
+                UpdateBoard();
+
+
                 back = findViewById(R.id.btnBack);
                 back.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        createShape(numRows, numCols);
-                        UpdateBoard(numRows, numCols);
+                        if(!isColisionDown(TetrisShapes.getCurrentShape(), currentShapeCol, currentShapeRow + 2)) {
+                            moveDown();
+                        }
                     }
                 });
             }
@@ -108,6 +117,10 @@
 
             // Method to set a shape on the game board
             private void putShapeOnBoard(int[][] shape, int row, int col) {
+                // Store the position of the current shape
+                currentShapeRow = row;
+                currentShapeCol = col;
+
                 // Implement logic to set the Tetrimino on the board
                 for (int i = 0; i < shape.length; i++) {
                     for (int j = 0; j < shape[0].length; j++) {
@@ -119,14 +132,17 @@
                         }
                     }
                 }
+
+                // Update the board graphics
+                UpdateBoard();
             }
 
-            public void UpdateBoard(int numRows, int numCols) {
+            private void UpdateBoard() {
                 // Alternate between "hello_pic" and "background" for each column
-                for (int r = 0; r < numRows; r++) {
+                for (int row = 0; row < board.length; row++) {
                     // Iterate through columns
-                    for (int c = 0; c < numCols; c++) {
-                        ImageChanger(c, r);
+                    for (int col = 0; col < board[0].length; col++) {
+                        ImageChanger(row, col);
                     }
 
                 }
@@ -141,7 +157,7 @@
              4 - green
              5 - purple
              */
-            public void ImageChanger(int r, int c) {
+            private void ImageChanger(int r, int c) {
                 // Get the ID of the ImageView based on row and column indices
                 int imageViewId = getResources().getIdentifier("c" + c + "r" + r, "id", getPackageName());
                 ImageView imageView = findViewById(imageViewId);
@@ -173,4 +189,90 @@
                 }
             }
 
+            private boolean isColisionDown(int[][] shape, int col, int row) {
+                for (int i = 0; i < shape.length; i++) {
+                    for (int j = 0; j < shape[0].length; j++) {
+                        // If the current cell of the shape is filled
+                        if (shape[i][j] != 0) {
+                            // Check if the cell below is out of bounds or occupied
+                            if (row + i + 1 >= board.length || board[row + i + 1][col + j] != 0) {
+                                return true; // Collision downwards detected
+                            }
+                        }
+                    }
+                }
+                return false; // No collision downwards
+            }
+
+            private boolean isColisionRight(int[][] shape, int col, int row) {
+                for (int i = 0; i < shape.length; i++) {
+                    for (int j = 0; j < shape[0].length; j++) {
+                        // If the current cell of the shape is filled
+                        if (shape[i][j] != 0) {
+                            // Check if the cell below is out of bounds or occupied
+                            if (col + i + 1 >= board[0].length || board[row + i][col + j + 1] != 0) {
+                                return true; // Collision downwards detected
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+
+            private boolean isColisionLeft(int[][] shape, int col, int row) {
+                for (int i = 0; i < shape.length; i++) {
+                    for (int j = 0; j < shape[0].length; j++) {
+                        // If the current cell of the shape is filled
+                        if (shape[i][j] != 0) {
+                            // Check if the cell below is out of bounds or occupied
+                            if (col + i - 1 >= board[0].length || board[row + i][col + j - 1] != 0) {
+                                return true; // Collision downwards detected
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+
+            //check all sides at once
+            private boolean isColision(int[][] shape, int col, int row) {
+                if (isColisionDown(shape, col, row) || isColisionRight(shape, col, row) || isColisionLeft(shape, col, row)) {
+                    return true;
+                }
+                return false;
+            }
+
+            private void moveDown() {
+                clearCurrentShape(); // Clear the current shape from its previous position
+
+                // Start the loop from the second-to-last row to allow movement to the last row
+                for (int row = board.length - 1; row >= 1; row--) {
+                    for (int col = 0; col < board[0].length; col++) {
+                        if (board[row][col] != 0) {
+                            // Move the shape down if the cell below is empty
+                            if (board[row + 1][col] == 0) {
+                                board[row + 1][col] = board[row][col];
+                                board[row][col] = 0;
+                            }
+                        }
+                    }
+                }
+
+                // Update the current shape position
+                currentShapeRow++;
+
+                putShapeOnBoard(TetrisShapes.getCurrentShape(), currentShapeRow, currentShapeCol); // Put the shape in its new position
+                UpdateBoard(); // Update the board graphics
+            }
+
+            private void clearCurrentShape() {
+                // Clear the current shape from its current position on the board
+                for (int i = 0; i < TetrisShapes.getCurrentShape().length; i++) {
+                    for (int j = 0; j < TetrisShapes.getCurrentShape()[0].length; j++) {
+                        if (TetrisShapes.getCurrentShape()[i][j] != 0) {
+                            board[currentShapeRow + i][currentShapeCol + j] = 0;
+                        }
+                    }
+                }
+            }
         }

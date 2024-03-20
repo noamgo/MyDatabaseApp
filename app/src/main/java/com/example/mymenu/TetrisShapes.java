@@ -1,6 +1,9 @@
 package com.example.mymenu;
 
 public class TetrisShapes {
+    // store the location of current shape
+    private static int[][] currentShape;
+
 
     // Tetris shapes
     public static final int[][] SHAPE_I = {
@@ -38,22 +41,29 @@ public class TetrisShapes {
     };
 
     // function that return random shape
+    // function that return random shape
     public static int[][] getRandomShape() {
         int random = (int) (Math.random() * 6);
         if (random == 0) {
-            return SHAPE_I;
+            currentShape = SHAPE_I;
         } else if (random == 1) {
-            return SHAPE_O;
+            currentShape = SHAPE_O;
         } else if (random == 2) {
-            return SHAPE_T;
+            currentShape = SHAPE_T;
         } else if (random == 3) {
-            return SHAPE_S;
+            currentShape = SHAPE_S;
         } else if (random == 4) {
-            return SHAPE_Z;
+            currentShape = SHAPE_Z;
         } else if (random == 5) {
-            return SHAPE_J;
+            currentShape = SHAPE_J;
+        } else {
+            currentShape = SHAPE_L;
         }
-        return SHAPE_L;
+        return currentShape;
+    }
+
+    public static int[][] getCurrentShape() {
+        return currentShape;
     }
 }
 
