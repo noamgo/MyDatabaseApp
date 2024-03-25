@@ -1050,13 +1050,51 @@
                 android:src="@drawable/tetris_background" />
         </GridLayout>
 
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Back"
-            android:textSize="30dp"
-            android:onClick="goBack"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnLeft"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Left"
+                android:textSize="20dp"
+                android:onClick="goBack"/>
+
+            <Button
+                android:id="@+id/btnDown"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Down"
+                android:textSize="20dp"
+                android:onClick="goBack"/>
+
+            <Button
+                android:id="@+id/btnRight"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Right"
+                android:textSize="20dp"
+                android:onClick="goBack"/>
+
+            <Button
+                android:id="@+id/btnRotate"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Rotate"
+                android:textSize="3dp"
+                android:onClick="goBack"/>
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

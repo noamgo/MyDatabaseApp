@@ -1,5 +1,7 @@
 package com.example.mymenu;
 
+import java.util.Arrays;
+
 public class TetrisShapes {
     // store the location of current shape
     private static int[][] currentShape;
@@ -65,5 +67,11 @@ public class TetrisShapes {
     public static int[][] getCurrentShape() {
         return currentShape;
     }
+
+    public static void setCurrentShape(int[][] shape) {
+        currentShape = shape;
+    }
+
+
 }
 

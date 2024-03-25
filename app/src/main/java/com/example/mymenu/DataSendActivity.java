@@ -31,8 +31,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
-import Tetris.Tetris;
-
 public class DataSendActivity extends AppCompatActivity {
 
 
@@ -419,7 +417,7 @@ public class DataSendActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.Home){
-            intent = new Intent(this, Tetris.class);
+            intent = new Intent(this, DataSendActivity.class);
             startActivity(intent);
 
             Toast.makeText(this, "You clicked Home", Toast.LENGTH_SHORT).show();
