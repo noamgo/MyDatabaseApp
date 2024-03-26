@@ -13,33 +13,33 @@ public class TetrisShapes {
     };
 
     public static final int[][] SHAPE_O = {
-            {1, 1},
-            {1, 1}
+            {2, 2},
+            {2, 2}
     };
 
     public static final int[][] SHAPE_T = {
-            {0, 1, 0},
-            {1, 1, 1}
+            {0, 3, 0},
+            {3, 3, 3}
     };
 
     public static final int[][] SHAPE_S = {
-            {0, 1, 1},
-            {1, 1, 0}
+            {0, 4, 4},
+            {4, 4, 0}
     };
 
     public static final int[][] SHAPE_Z = {
-            {1, 1, 0},
-            {0, 1, 1}
+            {4, 4, 0},
+            {0, 4, 4}
     };
 
     public static final int[][] SHAPE_J = {
-            {1, 0, 0},
-            {1, 1, 1}
+            {5, 0, 0},
+            {5, 5, 5}
     };
 
     public static final int[][] SHAPE_L = {
-            {0, 0, 1},
-            {1, 1, 1}
+            {0, 0, 5},
+            {5, 5, 5}
     };
 
     // function that return random shape

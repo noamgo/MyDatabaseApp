@@ -1,6 +1,5 @@
 package com.example.mymenu;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,18 +13,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AboutMeActivity extends AppCompatActivity {
 
-    Intent intent;
-    ImageView imageView;
     int[][] board;
-    Button btnDown, btnLeft, btnRight, btnRotate;
-    int colorIdCount;
+    GridLayout gridLayout;
+    Button btnLeft, btnRight, btnRotate, btnDown;
+
 
     // store the location of current shape
     int currentShapeRow = 0;
     int currentShapeCol = 0;
 
+    // keep player score
+    int score = 0;
+    // keep player level
+    int level = 0;
+    // keep player lines cleared
+    int totalLinesCleared = 0;
+
     private Handler handler = new Handler();
-    private final int DELAY_MS = 700; // 0.7 second delay
+    private int DELAY_MS;
 
 
     @Override
@@ -33,14 +38,9 @@ public class AboutMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_me_screen);
 
-        // Assuming you have a GridLayout defined in your layout XML file with id gridLayout
-        GridLayout gridLayout = findViewById(R.id.gridLayout);
-
         // Define the number of rows and columns
         int numRows = 20;
         int numCols = 10;
-
-        colorIdCount = 1;
 
         board = new int[numRows][numCols];
 
@@ -50,32 +50,6 @@ public class AboutMeActivity extends AppCompatActivity {
         createShape(numRows, numCols);
         UpdateBoard();
 
-
-        btnDown = findViewById(R.id.btnDown);
-        btnDown.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                moveDown();
-            }
-        });
-
-        btnLeft = findViewById(R.id.btnLeft);
-        btnLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                moveLeft();
-
-            }
-        });
-
-        btnRight = findViewById(R.id.btnRight);
-        btnRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                moveRight();
-            }
-        });
-
         btnRotate = findViewById(R.id.btnRotate);
         btnRotate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +57,46 @@ public class AboutMeActivity extends AppCompatActivity {
                 rotateShape();
             }
         });
+
+        gridLayout = findViewById(R.id.gridLayout);
+        gridLayout.setOnTouchListener(new OnSwipeTouchListener(AboutMeActivity.this) {
+            public void onSwipeRight() {
+                moveRight();
+            }
+
+            public void onSwipeLeft() {
+                moveLeft();
+            }
+
+            public void onSwipeBottom() {
+                // Define a Runnable to handle smooth downward movement
+                Runnable smoothMoveDown = new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!isCollisionDown(TetrisShapes.getCurrentShape(), currentShapeCol, currentShapeRow)) {
+                            clearCurrentShape(); // Clear the current shape from its previous position
+
+                            // Move the shape one cell down
+                            currentShapeRow++;
+
+                            putShapeOnBoard(TetrisShapes.getCurrentShape(), currentShapeRow, currentShapeCol); // Put the shape in its new position
+                            UpdateBoard(); // Update the board graphics
+
+                            // Schedule the next move after a short delay
+                            handler.postDelayed(this, DELAY_MS/10); // Adjust the delay as needed for smoother movement
+                        } else {
+                            // Collision detected, stop smooth movement
+                            handler.removeCallbacks(this);
+                        }
+                    }
+                };
+                // Start smooth downward movement
+                handler.post(smoothMoveDown);
+            }
+        });
     }
+
+    ;
 
     private void initializeGameBoard() {
         for (int i = 0; i < board.length; i++) {
@@ -101,30 +114,7 @@ public class AboutMeActivity extends AppCompatActivity {
         int initialRow = 0;
         int initialCol = numCols / 2 - selectedShape[0].length / 2;
 
-        //set random color for shape
-        selectedShape = changeToRandomColor(selectedShape);
-
         putShapeOnBoard(selectedShape, initialRow, initialCol);
-    }
-
-    private int[][] changeToRandomColor(int[][] shape) {
-        for (int i = 0; i < shape.length; i++) {
-            for (int j = 0; j < shape[0].length; j++) {
-                if (shape[i][j] == 1) {
-                    shape[i][j] = colorIdCount;
-                }
-            }
-        }
-        updateColorIdCount();
-        return shape;
-    }
-
-
-    private void updateColorIdCount() {
-        colorIdCount++;
-        if (colorIdCount > 5) {
-            colorIdCount = 1;
-        }
     }
 
     // Method to set a shape on the game board
@@ -202,42 +192,44 @@ public class AboutMeActivity extends AppCompatActivity {
     }
 
     private boolean isCollisionDown(int[][] shape, int col, int row) {
-        int lowestRow = shape.length - 1;
-        for (int j = 0; j < shape[0].length; j++) {
-            // If the current cell of the shape is filled
-            if (shape[lowestRow][j] != 0) {
-                // Check if the cell below is out of bounds or occupied
-                if (row + lowestRow + 1 >= board.length || board[row + lowestRow + 1][col + j] != 0) {
-                    return true; // Collision downwards detected
+        for (int i = 0; i < shape.length; i++) {
+            for (int j = 0; j < shape[0].length; j++) {
+                // If the current cell of the shape is filled
+                if ((shape[i][j] != 0 && i == shape.length - 1) || ((shape[i][j] != 0 && shape[i + 1][j] == 0))) {
+                    // Check if the cell below is out of bounds or occupied
+                    if (row + i + 1 >= board.length || board[row + i + 1][col + j] != 0) {
+                        return true; // Collision downwards detected
+                    }
                 }
             }
         }
-
-        return false; // No collision downwards
+        return false;
     }
 
     private boolean isCollisionRight(int[][] shape, int col, int row) {
-        int rightestCol = shape[0].length - 1;
         for (int i = 0; i < shape.length; i++) {
-            // If the current cell of the shape is filled
-            if (shape[i][rightestCol] != 0) {
-                // Check if the cell below is out of bounds or occupied
-                if (col + rightestCol + 1 >= board[0].length || board[row + i][col + rightestCol + 1] != 0) {
-                    return true; // Collision downwards detected
+            for (int j = 0; j < shape[0].length; j++) {
+                // If the current cell of the shape is filled
+                if ((shape[i][j] != 0 && j == shape[0].length - 1) || ((shape[i][j] != 0 && shape[i][j + 1] == 0))) {
+                    // Check if the cell below is out of bounds or occupied
+                    if (col + j + 1 >= board[0].length || board[row + i][col + j + 1] != 0) {
+                        return true; // Collision downwards detected
+                    }
                 }
             }
         }
-
         return false;
     }
 
     private boolean isCollisionLeft(int[][] shape, int col, int row) {
         for (int i = 0; i < shape.length; i++) {
-            // If the current cell of the shape is filled
-            if (shape[i][0] != 0) {
-                // Check if the cell below is out of bounds or occupied
-                if (col - 1 < 0 || board[row + i][col - 1] != 0) {
-                    return true; // Collision downwards detected
+            for (int j = 0; j < shape[0].length; j++) {
+                // If the current cell of the shape is filled
+                if ((shape[i][j] != 0 && j == 0) || ((shape[i][j] != 0 && shape[i][j - 1] == 0))) {
+                    // Check if the cell below is out of bounds or occupied
+                    if (col + j - 1 < 0 || board[row + i][col + j - 1] != 0) {
+                        return true; // Collision downwards detected
+                    }
                 }
             }
         }
@@ -370,6 +362,41 @@ public class AboutMeActivity extends AppCompatActivity {
         }
     }
 
+    public boolean isLineComplete(int row) {
+        for (int i = 0; i < board[0].length; i++) {
+            if (board[row][i] == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void levelUp() {
+        if (totalLinesCleared <= 50) {
+            level = totalLinesCleared / 10;
+            DELAY_MS = 700 - level * 50;
+        }
+    }
+
+    public void removeLines() {
+        int linesRemoved = 0;
+        for (int i = 0; i < board.length; i++) {
+            if (isLineComplete(i)) {
+                linesRemoved++;
+                for (int j = i; j > 0; j--) {
+                    for (int k = 0; k < board[0].length; k++) {
+                        board[j][k] = board[j - 1][k];
+                    }
+                }
+            }
+        }
+        if (linesRemoved > 0) {
+            score += linesRemoved * 100;
+            totalLinesCleared += linesRemoved;
+        }
+    }
+
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -393,7 +420,9 @@ public class AboutMeActivity extends AppCompatActivity {
     private Runnable autoMoveDownRunnable = new Runnable() {
         @Override
         public void run() {
+            removeLines();
             moveDown();
+            levelUp();
             handler.postDelayed(this, DELAY_MS); // Schedule the next move after delay
         }
     };
