@@ -7,16 +7,26 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.os.Handler;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AboutMeActivity extends AppCompatActivity {
 
     int[][] board;
     GridLayout gridLayout;
-    Button btnLeft, btnRight, btnRotate, btnDown;
+    Button btnRotate;
+    TextView tvScore, tvLevel;
 
+    boolean isGameOver = false;
+
+
+    // Define the number of rows and columns
+    int numRows = 20;
+    int numCols = 10;
 
     // store the location of current shape
     int currentShapeRow = 0;
@@ -29,7 +39,7 @@ public class AboutMeActivity extends AppCompatActivity {
     // keep player lines cleared
     int totalLinesCleared = 0;
 
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler();
     private int DELAY_MS;
 
 
@@ -38,17 +48,14 @@ public class AboutMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_me_screen);
 
-        // Define the number of rows and columns
-        int numRows = 20;
-        int numCols = 10;
-
         board = new int[numRows][numCols];
 
-        // Initialize the game board
-        initializeGameBoard();
+        tvLevel = findViewById(R.id.tvLevel);
 
-        createShape(numRows, numCols);
-        UpdateBoard();
+        tvScore = findViewById(R.id.tvScore);
+
+        // start the game
+        startGame();
 
         btnRotate = findViewById(R.id.btnRotate);
         btnRotate.setOnClickListener(new View.OnClickListener() {
@@ -73,17 +80,11 @@ public class AboutMeActivity extends AppCompatActivity {
                 Runnable smoothMoveDown = new Runnable() {
                     @Override
                     public void run() {
-                        if (!isCollisionDown(TetrisShapes.getCurrentShape(), currentShapeCol, currentShapeRow)) {
-                            clearCurrentShape(); // Clear the current shape from its previous position
-
-                            // Move the shape one cell down
-                            currentShapeRow++;
-
-                            putShapeOnBoard(TetrisShapes.getCurrentShape(), currentShapeRow, currentShapeCol); // Put the shape in its new position
-                            UpdateBoard(); // Update the board graphics
+                        if (!isCollisionDown(TetrisShapes.getCurrentShape(), currentShapeCol, currentShapeRow) && currentShapeRow != 0) {
+                            moveDown();
 
                             // Schedule the next move after a short delay
-                            handler.postDelayed(this, DELAY_MS/10); // Adjust the delay as needed for smoother movement
+                            handler.postDelayed(this, DELAY_MS / 10); // Adjust the delay as needed for smoother movement
                         } else {
                             // Collision detected, stop smooth movement
                             handler.removeCallbacks(this);
@@ -96,7 +97,16 @@ public class AboutMeActivity extends AppCompatActivity {
         });
     }
 
-    ;
+    public void startGame() {
+        score = 0;
+        tvScore.setText("score: " + score);
+        level = 0;
+        tvLevel.setText("level: " + level);
+        initializeGameBoard();
+        createShape(numRows, numCols);
+        startAutoMoveDown();
+        isGameOver = false;
+    }
 
     private void initializeGameBoard() {
         for (int i = 0; i < board.length; i++) {
@@ -105,6 +115,21 @@ public class AboutMeActivity extends AppCompatActivity {
                 board[i][j] = 0;
             }
         }
+        UpdateBoard();
+    }
+
+    private boolean isPlaceAvailable(int[][] shape, int row, int col) {
+        for (int i = 0; i < shape.length; i++) {
+            for (int j = 0; j < shape[0].length; j++) {
+                if (shape[i][j] != 0) {
+                    // Check boundaries and set the Tetrimino on the board
+                    if (board[row + i][col + j] != 0) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     // Method to spawn a new Shape on the board that randomize a shape
@@ -114,15 +139,22 @@ public class AboutMeActivity extends AppCompatActivity {
         int initialRow = 0;
         int initialCol = numCols / 2 - selectedShape[0].length / 2;
 
-        putShapeOnBoard(selectedShape, initialRow, initialCol);
+        if (!isPlaceAvailable(selectedShape, initialRow, initialCol)) {
+            gameOver();
+        }
+        else
+            putShapeOnBoard(selectedShape, initialRow, initialCol);
     }
 
     // Method to set a shape on the game board
-    private void putShapeOnBoard(int[][] shape, int row, int col) {
+    private boolean putShapeOnBoard(int[][] shape, int row, int col) {
         // Store the position of the current shape
         currentShapeRow = row;
         currentShapeCol = col;
 
+        if (!isPlaceAvailable(shape, row, col)) {
+            return false;
+        }
         // Implement logic to set the Tetrimino on the board
         for (int i = 0; i < shape.length; i++) {
             for (int j = 0; j < shape[0].length; j++) {
@@ -135,8 +167,10 @@ public class AboutMeActivity extends AppCompatActivity {
             }
         }
 
+
         // Update the board graphics
         UpdateBoard();
+        return true;
     }
 
     private void UpdateBoard() {
@@ -266,6 +300,7 @@ public class AboutMeActivity extends AppCompatActivity {
             UpdateBoard(); // Update the board graphics
         } else {
             // Current shape has stopped, create a new shape
+            removeLines();
             createShape(board.length, board[0].length);
             currentShapeRow = 0;
             currentShapeCol = board[0].length / 2 - TetrisShapes.getCurrentShape()[0].length / 2;
@@ -374,7 +409,8 @@ public class AboutMeActivity extends AppCompatActivity {
     public void levelUp() {
         if (totalLinesCleared <= 50) {
             level = totalLinesCleared / 10;
-            DELAY_MS = 700 - level * 50;
+            DELAY_MS = 700 - level * 150;
+            tvLevel.setText("Level: " + level);
         }
     }
 
@@ -391,11 +427,50 @@ public class AboutMeActivity extends AppCompatActivity {
             }
         }
         if (linesRemoved > 0) {
-            score += linesRemoved * 100;
+            score += linesRemoved * 100 + (linesRemoved - 1) * 25;
+            tvScore.setText("Score: " + score);
             totalLinesCleared += linesRemoved;
+            levelUp();
         }
     }
 
+    public void gameOver() {
+        Toast.makeText(AboutMeActivity.this, "Game Over", Toast.LENGTH_SHORT).show();
+        showWinnerPopup();
+        isGameOver = true;
+    }
+
+    // Method to show the pop-up screen
+    private void showWinnerPopup() {
+        // Create an AlertDialog.Builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        // Inflate the winner_popup.xml layout
+        View popupView = getLayoutInflater().inflate(R.layout.end_game_popup, null);
+
+        // Set the custom layout to the AlertDialog.Builder
+        builder.setView(popupView);
+
+        // Create the AlertDialog
+        AlertDialog dialog = builder.create();
+
+        // Find views from the layout
+        TextView winnerTextView = popupView.findViewById(R.id.tvGameEnded);
+        Button closeButton = popupView.findViewById(R.id.closeButton);
+
+        // Set a click listener for the close button
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Dismiss the dialog when the close button is clicked
+                dialog.dismiss();
+                startGame();
+            }
+        });
+
+        // Show the dialog
+        dialog.show();
+    }
 
     @Override
     protected void onResume() {
@@ -420,10 +495,11 @@ public class AboutMeActivity extends AppCompatActivity {
     private Runnable autoMoveDownRunnable = new Runnable() {
         @Override
         public void run() {
-            removeLines();
-            moveDown();
-            levelUp();
-            handler.postDelayed(this, DELAY_MS); // Schedule the next move after delay
+            if (!isGameOver) {
+                moveDown();
+                levelUp();
+                handler.postDelayed(this, DELAY_MS);
+            }
         }
     };
 }
